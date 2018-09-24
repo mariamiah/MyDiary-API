@@ -26,7 +26,7 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 * [Flask](http://flask.pocoo.org/)
 
 
-# Installation
+## Installation
 
 Create a new directory and initialize git in it. Clone this repository by running
 ```sh
