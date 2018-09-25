@@ -31,3 +31,15 @@ def fetch_all():
     """This endpoint fetches all entries"""
     Entries = [entry.toJSON() for entry in entries]
     return jsonify({'Entries': Entries}), 200
+
+
+@entry.route('/api/v1/entries/<int:entry_id>', methods=['GET'])
+def fetch_one(entry_id):
+    single_entry = []
+    if entry_id == 0 or entry_id > len(entries):
+        return jsonify({"message": "Index out of range"}), 400
+
+    if entry_id != 0 and entry_id <= len(entries):
+        Entry = entries[entry_id - 1]
+        single_entry.append(Entry.toJSON())
+        return jsonify({'Order': single_entry, 'status': 'Succeeded'}), 200
