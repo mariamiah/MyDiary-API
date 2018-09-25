@@ -1,6 +1,3 @@
-from . import entries
-
-
 class User:
     """The User is the person who interacts with the application """
     def __init__(self, user_id, first_name, last_name, email, password):
@@ -23,21 +20,15 @@ class Diary:
 
 
 class Entry:
-    """This class represents all possible entries made by user"""
-    def __init__(self, entry_id, date_added, date_modified, entry_text):
+    """Defines entries made by a user"""
+    def __init__(self, entry_id, date_created, entry_text):
         self.entry_id = entry_id
-        self.date_added = date_added
-        self.date_modified = date_modified
+        self.date_created = date_created
         self.entry_text = entry_text
 
-    def create_entry(self):
-        "creates an entry"
-        global entries
-        new_entry = {
-            "entry_id": self.entry_id,
-            "date_added": self.date_added,
-            "date_modified": self.date_modified,
-            "entry_text": self.entry_text
+    def toJSON(self):
+        return {
+            'entry_id': self.entry_id,
+            'date_created': self.date_created,
+            'entry_text': self.entry_text
         }
-        entries.append(new_entry)
-        return True
