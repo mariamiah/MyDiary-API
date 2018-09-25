@@ -25,5 +25,5 @@ class TestEntry(unittest.TestCase):
         hey")
 
     def test_class_instance(self):
-        # Tests that an object is an instance of a class
+        # Tests that the defined object is an instance of a class
         self.assertIsInstance(self.entry, Entry)
