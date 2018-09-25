@@ -1,9 +1,11 @@
 class User:
     """The User is the person who interacts with the application """
-    def __init__(self, user_id, first_name, last_name, email, password):
+    def __init__(self, user_id, first_name, last_name, user_name, email,
+                 password):
         self.user_id = user_id
         self.first_name = first_name
         self.last_name = last_name
+        self.user_name = user_name
         self.email = email
         self.password = password
         self.registered_users = dict()  # To keep track of the registered users
@@ -30,5 +32,5 @@ class Entry:
         return {
             'entry_id': self.entry_id,
             'date_created': self.date_created,
-            'entry_text': self.entry_text
+            'entry_text': self.entry_text,
         }
