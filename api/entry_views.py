@@ -11,7 +11,6 @@ entries = []
 @entry.route('/api/v1/entries', methods=['POST'])
 def create_entry():
     data = request.get_json()
-
     if data['entry_text'] == "":
         return jsonify({'message': "Enter entry_text"}), 400
 
@@ -25,3 +24,10 @@ def create_entry():
         return jsonify({"Message": "Entry added successfully"}), 201
     except ValueError:
         return jsonify({"Message": "Invalid fields"}), 400
+
+
+@entry.route('/api/v1/entries', methods=['GET'])
+def fetch_all():
+    """This endpoint fetches all entries"""
+    Entries = [entry.toJSON() for entry in entries]
+    return jsonify({'Entries': Entries}), 200
