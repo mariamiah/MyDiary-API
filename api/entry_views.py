@@ -43,3 +43,14 @@ def fetch_one(entry_id):
         Entry = entries[entry_id - 1]
         single_entry.append(Entry.toJSON())
         return jsonify({'Order': single_entry, 'status': 'Succeeded'}), 200
+
+
+@entry.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])
+def modify_entry(entry_id):
+    if entry_id == 0 or entry_id > len(entries):
+        return jsonify({"message": "Index is out of range"})
+    data = request.get_json()
+    for entry in entries:
+        if int(entry.entry_id) == int(entry_id):
+            entry.entry_text = data['entry_text']     
+    return jsonify({'message': "successfully updated"}), 200
