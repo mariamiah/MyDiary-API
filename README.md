@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/mariamiah/MyDiary-API.svg?branch=develop)](https://travis-ci.org/mariamiah/MyDiary-API)
+[![Coverage Status](https://coveralls.io/repos/github/mariamiah/MyDiary-API/badge.svg?branch=develop)](https://coveralls.io/github/mariamiah/MyDiary-API?branch=develop)
 # MyDiary-API
 MyDiary is an online journal where users can pen down their thoughts and feelings.
 
