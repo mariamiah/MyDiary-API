@@ -1,6 +1,5 @@
 from flask import Flask
+from api.entry_views import entry
 
 app = Flask(__name__)
-
-entries = []
-known_entry_ids = []
+app.register_blueprint(entry)
