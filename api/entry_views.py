@@ -52,5 +52,5 @@ def modify_entry(entry_id):
     data = request.get_json()
     for entry in entries:
         if int(entry.entry_id) == int(entry_id):
-            entry.entry_text = data['entry_text']     
+            entry.entry_text = data['entry_text']
     return jsonify({'message': "successfully updated"}), 200
