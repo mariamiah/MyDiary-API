@@ -10,6 +10,7 @@ entries = []
 
 @entry.route('/api/v1/entries', methods=['POST'])
 def create_entry():
+    """Creates a new entry into the system """
     data = request.get_json()
     if data['entry_text'] == "":
         return jsonify({'message': "Enter entry_text"}), 400
@@ -35,6 +36,7 @@ def fetch_all():
 
 @entry.route('/api/v1/entries/<int:entry_id>', methods=['GET'])
 def fetch_one(entry_id):
+    """Fetches a single entry"""
     single_entry = []
     if entry_id == 0 or entry_id > len(entries):
         return jsonify({"message": "Index out of range"}), 400
@@ -47,6 +49,7 @@ def fetch_one(entry_id):
 
 @entry.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])
 def modify_entry(entry_id):
+    """Updates an entry"""
     if entry_id == 0 or entry_id > len(entries):
         return jsonify({"message": "Index is out of range"})
     data = request.get_json()
