@@ -21,7 +21,7 @@ class Diary:
         self.registered_diaries = dict()
 
 
-class Entry(User):
+class Entry:
     """Defines entries made by a user"""
     def __init__(self, entry_id, date_created, entry_text):
         self.entry_id = entry_id
