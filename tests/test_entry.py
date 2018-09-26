@@ -1,5 +1,6 @@
 import unittest
 from api.models import Entry
+from api.entry_views import create_entry
 
 
 class TestEntry(unittest.TestCase):
