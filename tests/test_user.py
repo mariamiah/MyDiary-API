@@ -22,15 +22,15 @@ class TestUser(unittest.TestCase):
         self.user.last_name = "sandra"
         self.assertEqual(self.user.last_name, "sandra", "last name has changed to\
         sandra")
-    
+
     def test_username(self):
         self.assertEqual(self.user.user_name, "mary")
-    
+
     def test_email(self):
         self.assertEqual(self.user.email, "maria@gmail.com")
         self.user.email = "sandra@yahoo.com"
         self.assertEqual(self.user.email, "sandra@yahoo.com")
-    
+
     def test_password(self):
         self.assertEqual(self.user.password, "1234")
 
