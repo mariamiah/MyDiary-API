@@ -14,12 +14,6 @@ def register_user():
     if len(data.keys()) == 0:
         return jsonify({"message": "No user added"}), 400
 
-    if data['first_name'] == "":
-        return jsonify({"Message": "Firstname cannot be blank"}), 400
-
-    if data['last_name'] == "":
-        return jsonify({"message": "lastname cannot be blank"}), 400
-
     if data['user_name'] == "":
         return jsonify({"message": "username cannot be blank"}), 400
 
@@ -41,12 +35,8 @@ def register_user():
         return jsonify({
             "message": "user name cannot contain numbers only"}), 400
 
-    if not re.match(r"([a-zA-Z])", data['first_name']):
-        return jsonify({
-            "message": "please enter correct first name format"}), 400
-
-    if not re.match(r"([a-zA-Z])", data['last_name']):
-        return jsonify({"message": "Enter correct format for last name"}), 400
+    if len(data['password']) < 5:
+        return jsonify({"message": "Password too short"}), 400
 
     for user in users:
         if user.email == data['email']:
@@ -57,8 +47,7 @@ def register_user():
         user_id += 1
         hashed_password = generate_password_hash(data['password'],
                                                  method='sha256')
-        user = User(user_id, data['first_name'], data['last_name'],
-                    data['user_name'], data['email'], hashed_password)
+        user = User(user_id, data['user_name'], data['email'], hashed_password)
         users.append(user)
         return jsonify({"message": "User added successfully"}), 201
     return jsonify({"message": "Invalid fields"}), 400
