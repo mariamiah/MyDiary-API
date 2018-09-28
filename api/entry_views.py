@@ -51,7 +51,7 @@ def fetch_one(entry_id):
 def modify_entry(entry_id):
     """Updates an entry"""
     if entry_id == 0 or entry_id > len(entries):
-        return jsonify({"message": "Index is out of range"})
+        return jsonify({"message": "Index is out of range"}), 400
     data = request.get_json()
     for entry in entries:
         if int(entry.entry_id) == int(entry_id):
