@@ -13,10 +13,8 @@ def create_diary():
     data = request.get_json()
     if data['diary_name'] in diaries:
         return jsonify({"message": "Diary exists already!"}), 400
-    
     if data['diary_name'] == "":
         return jsonify({"message": "diary_name cannot be blank"})
-    
     if isinstance(data['diary_name'], str):
         diary_id = len(diaries)
         diary_id += 1
