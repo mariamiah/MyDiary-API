@@ -48,10 +48,9 @@ def fetch_one(diary_id):
 
 @diary.route('/api/v1/diaries/<int:diary_id>', methods=['DELETE'])
 def delete_diary(diary_id):
-    if diary_id not in diaries:
-        """Deletes a diary"""
-        return jsonify({"message": "Specific diary doesnot exist"}), 400
-
-    if diary_id:
-        diaries.remove('diary')
-        return jsonify({"message":"Diary deleted successfully"}), 200
+    if diary_id == 0 or diary_id > len(diaries):
+        return jsonify({"message": "Index out of range"}), 200
+    for diary in diaries:
+        if diary.diary_id == diary_id:
+            diaries.remove(diary)
+    return jsonify({"message": "Diary deleted successfully"}), 200
