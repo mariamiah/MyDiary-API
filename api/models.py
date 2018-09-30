@@ -9,12 +9,17 @@ class User:
 
 class Diary:
     """The Diary is where the user makes and views entries"""
-    def __init__(self, diary_id, diary_name, date_created, date_modified):
+    def __init__(self, diary_id, diary_name, date_created):
         self.diary_id = diary_id
         self.diary_name = diary_name
         self.date_created = date_created
-        self.date_modified = date_modified
-        self.registered_diaries = dict()
+
+    def serialize(self):
+        return {
+            'diary_id': self.diary_id,
+            'diary_name': self.diary_name,
+            'date_created': self.date_created
+            }
 
 
 class Entry:
