@@ -14,7 +14,7 @@ def create_diary():
     if data['diary_name'] in diaries:
         return jsonify({"message": "Diary exists already!"}), 400
     if data['diary_name'] == "":
-        return jsonify({"message": "diary_name cannot be blank"})
+        return jsonify({"message": "diary_name cannot be blank"}), 400
     if isinstance(data['diary_name'], str):
         diary_id = len(diaries)
         diary_id += 1
