@@ -6,6 +6,14 @@ class User:
         self.email = email
         self.password = password
 
+    def get_dict(self):
+        return {
+            'user_id': self.user_id,
+            'user_name': self.user_name,
+            'email': self.email,
+            'password': self.password
+        }
+
 
 class Diary:
     """The Diary is where the user makes and views entries"""
