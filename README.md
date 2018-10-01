@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/mariamiah/MyDiary-API.svg?branch=develop)](https://travis-ci.org/mariamiah/MyDiary-API)
-[![Coverage Status](https://coveralls.io/repos/github/mariamiah/MyDiary-API/badge.svg?branch=develop)](https://coveralls.io/github/mariamiah/MyDiary-API?branch=develop)
-[![Maintainability](https://api.codeclimate.com/v1/badges/c8b674179b9cb96c7fc3/maintainability)](https://codeclimate.com/github/mariamiah/MyDiary-API/maintainability)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/56da3454c88449adb98e1bd55440152c)](https://www.codacy.com/app/mariamiah/MyDiary-API?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mariamiah/MyDiary-API&amp;utm_campaign=Badge_Grade)
 # MyDiary-API
 MyDiary is an online journal where users can pen down their thoughts and feelings.
 
@@ -30,7 +26,7 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 * [Flask](http://flask.pocoo.org/)
 
 
-## Installation
+# Installation
 
 Create a new directory and initialize git in it. Clone this repository by running
 ```sh
@@ -61,8 +57,3 @@ Test your setup using [postman](www.getpostman.com) REST-client
 * navigate to project root
 * Use `nosetests tests/` to run the tests
 * To run tests with coverage, use `nosetests --with-coverage --cover-package=app && coverage report`
-
-### Heroku Link to MyDiary-API
-### [MyDiary-API](https://mydiaryapi123.herokuapp.com)
-
-
