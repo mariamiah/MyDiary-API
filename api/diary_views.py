@@ -32,16 +32,16 @@ def fetch_diaries():
 
 
 @diary.route('/api/v1/diaries/<int:diary_id>', methods=['GET'])
-def fetch_one(diary_id):
-    """Fetches a single diary"""
-    single_diary = []
-    if diary_id == 0 or diary_id > len(diaries):
-        return jsonify({"message": "Index out of range"}), 400
-
+def fetch_diary_by_id(diary_id):
+    """Returns one diary specified by the id"""
+    fetched_diary = []
     if diary_id != 0 and diary_id <= len(diaries):
         diary = diaries[diary_id - 1]
-        single_diary.append(diary.serialize())
-        return jsonify({'Diary': single_diary, 'status': 'Succeeded'}), 200
+        fetched_diary.append(diary.serialize())
+        return jsonify({'Diary': fetched_diary, 'status': 'Succeeded'}), 200
+
+    if diary_id == 0 or diary_id > len(diaries):
+        return jsonify({"message": "Index out of range"}), 400
 
 
 @diary.route('/api/v1/diaries/<int:diary_id>', methods=['DELETE'])
