@@ -51,3 +51,16 @@ def register_user():
         users.append(user)
         return jsonify({"message": "User added successfully"}), 201
     return jsonify({"message": "Invalid fields"}), 400
+
+
+@user.route('/api/v1/login', methods=['POST'])
+def login_user():
+    """ This enables a user to successfully login """
+    pass
+
+
+@user.route('/api/v1/users', methods=['GET'])
+def get_users():
+    """This endpoint fetches all users"""
+    Users = [user.get_dict() for user in users]
+    return jsonify({"message": Users}), 200
