@@ -1,7 +1,9 @@
-from flask import request, jsonify, Blueprint
+from flask import request, jsonify, Blueprint, make_response
 from api.models import User
+from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 import re
-from werkzeug.security import generate_password_hash
+import jwt
 
 user = Blueprint('user', __name__)
 
@@ -59,7 +61,15 @@ def register_user():
 @user.route('/api/v1/login', methods=['POST'])
 def login_user():
     """ This enables a user to successfully login """
-    pass
+    auth = request.authorization
+    if auth:
+        if auth.username and auth.password:
+            token = jwt.encode({'user': auth.username,
+                                'exp': datetime.datetime.utcnow() +
+                                datetime.timedelta(minutes=10)}, "homehome")
+        return jsonify({'token': token.decode('UTF-8')})
+    return make_response('could not verify', 401), {
+        'WWW-Authenticate': 'Basic realm="Login Required"'}
 
 
 @user.route('/api/v1/users', methods=['GET'])
