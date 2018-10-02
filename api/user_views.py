@@ -3,7 +3,6 @@ from api.models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 import re
-import jwt
 
 user = Blueprint('user', __name__)
 
@@ -56,20 +55,6 @@ def register_user():
         users.append(user)
         return jsonify({"message": "User added successfully"}), 201
     return jsonify({"message": "Invalid fields"}), 400
-
-
-@user.route('/api/v1/login', methods=['POST'])
-def login_user():
-    """ This enables a user to successfully login """
-    auth = request.authorization
-    if auth:
-        if auth.username and auth.password:
-            token = jwt.encode({'user': auth.username,
-                                'exp': datetime.datetime.utcnow() +
-                                datetime.timedelta(minutes=10)}, "homehome")
-        return jsonify({'token': token.decode('UTF-8')})
-    return make_response('could not verify', 401), {
-        'WWW-Authenticate': 'Basic realm="Login Required"'}
 
 
 @user.route('/api/v1/users', methods=['GET'])

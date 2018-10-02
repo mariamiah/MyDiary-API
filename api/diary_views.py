@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from api.models import Diary
 from datetime import datetime
-from api.decorators import token_required
 
 diary = Blueprint('diary', __name__)
 
@@ -9,7 +8,6 @@ diaries = []
 
 
 @diary.route('/api/v1/diaries', methods=['POST'])
-@token_required
 def create_diary():
     """ Adds a new diary to the system """
     data = request.get_json()
@@ -27,7 +25,6 @@ def create_diary():
 
 
 @diary.route('/api/v1/diaries', methods=['GET'])
-@token_required
 def fetch_diaries():
     """ This endpoint fetches all diaries """
     Diaries = [diary.serialize() for diary in diaries]
@@ -35,7 +32,6 @@ def fetch_diaries():
 
 
 @diary.route('/api/v1/diaries/<int:diary_id>', methods=['GET'])
-@token_required
 def fetch_diary_by_id(diary_id):
     """Returns one diary specified by the id"""
     fetched_diary = []
@@ -49,7 +45,6 @@ def fetch_diary_by_id(diary_id):
 
 
 @diary.route('/api/v1/diaries/<int:diary_id>', methods=['DELETE'])
-@token_required
 def delete_diary(diary_id):
     if diary_id == 0 or diary_id > len(diaries):
         return jsonify({"message": "Index out of range"}), 400

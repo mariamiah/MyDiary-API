@@ -32,7 +32,7 @@ class TestDiaryViews(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_fetch_all_diaries(self):
-        # Tests that the endpoint successfully fetches all rides
+        # Tests that the endpoint successfully fetches all diaries
         response = self.client().get('/api/v1/diaries',
                                      content_type='application/json')
         self.assertEqual(response.status_code, 200)

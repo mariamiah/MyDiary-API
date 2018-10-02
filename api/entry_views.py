@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request, json
 from api.models import Entry
 from datetime import datetime
-from api.decorators import token_required
 
 entry = Blueprint('entry', __name__)
 
@@ -9,7 +8,6 @@ entries = []
 
 
 @entry.route('/api/v1/entries', methods=['POST'])
-@token_required
 def create_entry():
     """Creates a new entry into the system """
     data = request.get_json()
@@ -29,7 +27,6 @@ def create_entry():
 
 
 @entry.route('/api/v1/entries', methods=['GET'])
-@token_required
 def fetch_all():
     """This endpoint fetches all entries"""
     Entries = [entry.toJSON() for entry in entries]
@@ -37,7 +34,6 @@ def fetch_all():
 
 
 @entry.route('/api/v1/entries/<int:entry_id>', methods=['GET'])
-@token_required
 def fetch_one(entry_id):
     """Fetches a single entry"""
     single_entry = []
@@ -51,7 +47,6 @@ def fetch_one(entry_id):
 
 
 @entry.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])
-@token_required
 def modify_entry(entry_id):
     """Updates an entry"""
     if entry_id == 0 or entry_id > len(entries):
