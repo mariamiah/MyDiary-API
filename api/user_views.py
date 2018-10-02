@@ -42,6 +42,9 @@ def register_user():
         if user.email == data['email']:
             return jsonify({"message": "user already exists!"})
 
+        if user.user_name == data['user_name']:
+            return jsonify({"message": "User_name already exists"}), 400
+
     if isinstance(data['user_name'], str):
         user_id = len(users)
         user_id += 1
