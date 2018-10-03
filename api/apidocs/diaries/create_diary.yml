@@ -1,0 +1,49 @@
+Endpoint for creating a new Diary
+---
+  tags:
+    - Diary
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - name: body
+      in: body
+      description: Diary Details
+      required: true
+      schema :
+        $ref: '#/definitions/createDiary'
+  definitions:
+    Diary:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        diary_id:
+          type: integer
+          format: int64
+        diary_name:
+          type: string
+        date_created:
+          type: string
+          format: date-time
+    createDiary:
+      type: object
+      properties:
+        diary_name:
+          type: string
+          example: "first_diary"
+
+  responses:
+    201:
+      description: Diary created successfully
+      schema:
+        $ref: '#/definitions/Diary'
+      examples:
+        [{
+          "message":"Diary successfully created"
+        }]
+    400:
+      description: diary already exists
+      description: diary name cannot be blank
