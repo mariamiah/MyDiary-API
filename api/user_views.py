@@ -1,7 +1,8 @@
-from flask import request, jsonify, Blueprint
+from flask import request, jsonify, Blueprint, make_response
 from api.models import User
+from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 import re
-from werkzeug.security import generate_password_hash
 
 user = Blueprint('user', __name__)
 
@@ -42,6 +43,9 @@ def register_user():
         if user.email == data['email']:
             return jsonify({"message": "user already exists!"})
 
+        if user.user_name == data['user_name']:
+            return jsonify({"message": "User_name already exists"}), 400
+
     if isinstance(data['user_name'], str):
         user_id = len(users)
         user_id += 1
@@ -51,3 +55,10 @@ def register_user():
         users.append(user)
         return jsonify({"message": "User added successfully"}), 201
     return jsonify({"message": "Invalid fields"}), 400
+
+
+@user.route('/api/v1/users', methods=['GET'])
+def get_users():
+    """This endpoint fetches all users"""
+    Users = [user.get_dict() for user in users]
+    return jsonify({"message": Users}), 200

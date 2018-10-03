@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, request, json
 from api.models import Entry
 from datetime import datetime
 
-
 entry = Blueprint('entry', __name__)
 
 entries = []
