@@ -13,12 +13,18 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 - Users can modify a diary entry
 
 ## API Endpoints
-    EndPoint                                            Functionality
-                             
-    GET /entries                                        Fetch all entries
-    GET /entries/<entryId>                              Fetch a single entry 
-    POST /entries                                       Create an entry
-    PUT /entries/<entryId>                              Modify an entry
+| REQUEST | ROUTE | FUNCTIONALITY |
+| ------- | ----- | ------------- |
+| POST | /api/v1/signup | Registers a user |
+| GET | api/v1/users | Fetches all users |
+| POST | api/v1/diaries | Creates new diary |
+| GET | api/v1/diaries | Fetches all diaries |
+| GET | api/v1/diaries/&lt;diary_id&gt; | Fetches diary by id |
+| DELETE | api/v1/diaries/&lt;diary_id&gt; | Deletes a diary |
+| GET | api/v1/entries | Fetch all entries |
+| POST | api/v1/entries | Create a diary entry |
+| GET | api/v1/entries/&lt;entry_id&gt; | Fetch a specific entry  |
+| PUT | api/v1/entries/&lt;entry_id&gt; | Update diary entry |
 
     
 **Getting started with the app**
