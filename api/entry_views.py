@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, json
 from api.models import Entry
 from datetime import datetime
+from flasgger import swag_from
 
 entry = Blueprint('entry', __name__)
 
@@ -8,6 +9,7 @@ entries = []
 
 
 @entry.route('/api/v1/entries', methods=['POST'])
+@swag_from('apidocs/entries/create_entries.yml')
 def create_entry():
     """Creates a new entry into the system """
     data = request.get_json()
@@ -27,6 +29,7 @@ def create_entry():
 
 
 @entry.route('/api/v1/entries', methods=['GET'])
+@swag_from('apidocs/entries/get_all_entries.yml')
 def fetch_all():
     """This endpoint fetches all entries"""
     Entries = [entry.toJSON() for entry in entries]
@@ -34,6 +37,7 @@ def fetch_all():
 
 
 @entry.route('/api/v1/entries/<int:entry_id>', methods=['GET'])
+@swag_from('apidocs/entries/get_one_entry.yml')
 def fetch_one(entry_id):
     """Fetches a single entry"""
     single_entry = []
@@ -47,6 +51,7 @@ def fetch_one(entry_id):
 
 
 @entry.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])
+@swag_from('apidocs/entries/modify_entries.yml')
 def modify_entry(entry_id):
     """Updates an entry"""
     if entry_id == 0 or entry_id > len(entries):

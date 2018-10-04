@@ -1,6 +1,7 @@
 from flask import request, jsonify, Blueprint, make_response
 from api.models import User
 from werkzeug.security import generate_password_hash, check_password_hash
+from flasgger import swag_from
 import datetime
 import re
 
@@ -10,6 +11,7 @@ users = []
 
 
 @user.route('/api/v1/signup', methods=['POST'])
+@swag_from('apidocs/users/create_user.yml')
 def register_user():
     data = request.get_json()
     if len(data.keys()) == 0:
@@ -58,6 +60,7 @@ def register_user():
 
 
 @user.route('/api/v1/users', methods=['GET'])
+@swag_from('apidocs/users/get_users.yml')
 def get_users():
     """This endpoint fetches all users"""
     Users = [user.get_dict() for user in users]
